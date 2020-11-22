@@ -126,12 +126,26 @@ public class CarControllerTest {
     }
 
     /*
-    * Negative Scenario: get Car details for invalid car id value
-    * */
+     * Negative Scenario: get Car details for invalid car id value
+     * */
 
     @Test
-    public void findCarByInvalidId() throws Exception{
+    public void findCarByInvalidId() throws Exception {
         mvc.perform(get(new URI("/cars/invalid"))
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .accept(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isBadRequest());
+    }
+
+    /*
+     * Update Car Test
+     * */
+    @Test
+    public void updateCar() throws Exception {
+        Car car = getCar();
+        car.setId(1L);
+        mvc.perform(put(new URI("/cars/invalid"))
+                .content(json.write(car).getJson())
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .accept(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isBadRequest());
