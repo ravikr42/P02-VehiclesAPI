@@ -81,7 +81,7 @@ public class CarControllerTest {
                         .content(json.write(car).getJson())
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
                         .accept(MediaType.APPLICATION_JSON_UTF8)).andReturn();
-        Assert.assertEquals("Response Mismatch", HttpStatus.CREATED, mvcResult.getResponse().getStatus());
+        Assert.assertEquals("Response Mismatch", HttpStatus.CREATED.value(), mvcResult.getResponse().getStatus());
     }
 
     /**
